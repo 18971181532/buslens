@@ -1,0 +1,38 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Unit tests
+        run: python -m unittest discover -s tests -t . -v
+
+      - name: CLI smoke test (human)
+        run: python run.py decode --demo i2c_eeprom
+
+      - name: CLI smoke test (json)
+        run: python run.py decode --demo spi_flash --json > /tmp/spi.json && python -c "import json;print(json.load(open('/tmp/spi.json'))['protocol'])"
+
+      - name: Round-trip export
+        run: python run.py export --demo uart_at --out /tmp/uart.vcd && wc -l /tmp/uart.vcd
+
+      - name: Package metadata check
+        run: python -m pip install --upgrade build && python -m build

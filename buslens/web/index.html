@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BusLens · 嵌入式总线信号工作台</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Cpath d='M5 22h4v-6h4v6h4V10h4v12h6' stroke='%23fff' stroke-width='2' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 40 40" aria-hidden="true">
+      <defs>
+        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#1d4ed8"/><stop offset="1" stop-color="#22d3ee"/>
+        </linearGradient>
+      </defs>
+      <rect x="1" y="1" width="38" height="38" rx="10" fill="url(#lg)"/>
+      <path d="M6 27h5v-8h5v8h5V13h5v14h8" fill="none" stroke="#fff" stroke-width="2.2"
+            stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="11" cy="19" r="1.7" fill="#ffe9b3"/>
+      <circle cx="21" cy="21" r="1.7" fill="#ffe9b3"/>
+    </svg>
+    <div>
+      <h1>BusLens</h1>
+      <p>嵌入式总线信号工作台</p>
+    </div>
+  </div>
+
+  <div class="topbar-tags">
+    <span class="tag">I²C</span>
+    <span class="tag">SPI</span>
+    <span class="tag">UART</span>
+    <span class="tag">PWM</span>
+    <span class="tag">WS2812</span>
+  </div>
+
+  <div class="spacer"></div>
+
+  <label class="btn file-btn">
+    导入 VCD / CSV
+    <input type="file" id="fileInput" accept=".vcd,.csv,.txt">
+  </label>
+  <button class="btn" id="exportJson">导出分析</button>
+  <button class="btn" id="exportVcd">导出 VCD</button>
+  <button class="btn" id="themeBtn" title="切换主题">◐</button>
+</header>
+
+<main class="layout">
+  <aside class="sidebar">
+    <section class="panel">
+      <h2>信号源</h2>
+      <div class="demo-list" id="demoList"></div>
+    </section>
+
+    <section class="panel">
+      <h2>协议设置</h2>
+      <div id="protoConfig"></div>
+      <button class="btn primary" id="applyConfig" style="width:100%;margin-top:4px">重新解码</button>
+    </section>
+
+    <section class="panel">
+      <h2>信号质量</h2>
+      <div id="qualityPanel"><div class="empty" style="padding:12px">加载后显示</div></div>
+    </section>
+  </aside>
+
+  <section class="content">
+    <div class="summary" id="summary"></div>
+
+    <div class="card wave-card">
+      <div class="wave-toolbar">
+        <span class="name" id="sourceName">—</span>
+        <span class="spacer"></span>
+        <span>滚轮缩放 · 拖拽平移 · 单击放 A · 右键放 B · 双击适应</span>
+        <button class="btn small" id="zoomOut">−</button>
+        <button class="btn small" id="zoomIn">+</button>
+        <button class="btn small" id="fitBtn">适应</button>
+      </div>
+      <div class="wave-wrap">
+        <canvas id="waveCanvas"></canvas>
+      </div>
+      <div class="wave-footer" id="cursorReadout">把鼠标移到波形上查看数值</div>
+    </div>
+
+    <div class="card">
+      <nav class="subtabs" id="detailTabs">
+        <button data-tab="tx" class="active">事务</button>
+        <button data-tab="reg">寄存器</button>
+        <button data-tab="stats">统计</button>
+        <button data-tab="err">诊断</button>
+        <button data-tab="device">虚拟设备</button>
+      </nav>
+      <div id="detailBody"><div class="empty">加载一个示例开始</div></div>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

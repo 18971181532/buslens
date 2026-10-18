@@ -1,0 +1,22 @@
+{
+  "protocol": "i2c",
+  "description": "TMP102: point at register 0x00 and read two bytes",
+  "transactions": [
+    {
+      "type": "write",
+      "address": 72,
+      "data": [
+        2,
+        96
+      ]
+    },
+    {
+      "type": "write_read",
+      "address": 72,
+      "data": [
+        0
+      ],
+      "count": 2
+    }
+  ]
+}

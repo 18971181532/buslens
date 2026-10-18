@@ -1,0 +1,21 @@
+{
+  "protocol": "uart",
+  "description": "AT command and module reply at 115200 8N1",
+  "tx": [
+    65,
+    84,
+    43,
+    86,
+    69,
+    82,
+    63,
+    13,
+    10
+  ],
+  "rx": [
+    79,
+    75,
+    13,
+    10
+  ]
+}

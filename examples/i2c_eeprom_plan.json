@@ -1,0 +1,24 @@
+{
+  "protocol": "i2c",
+  "description": "24C02: write 4 bytes to 0x10, then read them back",
+  "transactions": [
+    {
+      "type": "write",
+      "address": 80,
+      "data": [
+        16,
+        170,
+        187,
+        204
+      ]
+    },
+    {
+      "type": "write_read",
+      "address": 80,
+      "data": [
+        16
+      ],
+      "count": 4
+    }
+  ]
+}

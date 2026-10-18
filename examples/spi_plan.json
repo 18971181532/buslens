@@ -1,0 +1,16 @@
+{
+  "protocol": "spi",
+  "description": "JEDEC ID read (0x9F) in SPI mode 0",
+  "mosi": [
+    159,
+    0,
+    0
+  ],
+  "miso": [
+    239,
+    64,
+    24
+  ],
+  "cpol": 0,
+  "cpha": 0
+}
