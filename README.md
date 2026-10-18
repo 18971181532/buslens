@@ -6,6 +6,9 @@
   <img alt="tests" src="https://img.shields.io/badge/tests-45%20passed-15803d">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-b45309">
   <img alt="protocols" src="https://img.shields.io/badge/protocols-I2C%20%C2%B7%20SPI%20%C2%B7%20UART%20%C2%B7%20PWM%20%C2%B7%20WS2812-6d28d9">
+  <a href="https://github.com/18971181532/buslens/actions/workflows/tests.yml">
+    <img alt="tests" src="https://github.com/18971181532/buslens/actions/workflows/tests.yml/badge.svg">
+  </a>
 </p>
 
 > 逻辑分析仪抓到的是一串 0/1。BusLens 把它变成**事务、寄存器和"这条总线还健康吗"的结论**，
@@ -63,6 +66,17 @@ BusLens 的定位是这条链路的"最后一公里"：
 ### 命令行
 
 同一套能力在终端可用，方便脚本化回归与批量分析。
+
+<table>
+<tr>
+<td width="50%"><img src="docs/images/spi.png" alt="SPI 解码"></td>
+<td width="50%"><img src="docs/images/device.png" alt="虚拟设备"></td>
+</tr>
+<tr>
+<td align="center"><sub>SPI 四线波形：CS 分帧、MOSI/MISO 同字对齐</sub></td>
+<td align="center"><sub>虚拟设备：发起一次读取，生成波形后立即解码</sub></td>
+</tr>
+</table>
 
 ---
 
